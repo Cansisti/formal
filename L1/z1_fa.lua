@@ -27,4 +27,4 @@ function fa_match(text, delta, m)
 end
 
 x = fa_match("1111101", get_transition_table("01", "01"), 2)
-print(x)
+print(x)s

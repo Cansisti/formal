@@ -39,7 +39,23 @@ function kmp_match(text, pattern)
       return i - m
     end
   end
+  return -1
 end
 
-x = kmp_match("1111101", "01")
-print(x)
+function kmp_match_all(text, pattern)
+  local results = {}
+  local p = 1
+  while true do
+    local f = kmp_match(text:sub(p), pattern)
+    if f >= 0 then
+      table.insert(results, p+f-1)
+      p = p + f + #pattern
+    else
+      break
+    end
+  end
+  return results
+end
+
+x = kmp_match_all("αβαβγβαβαβαβαβγ", "αβ")
+for k, v in pairs(x) do print(v) end

@@ -28,7 +28,7 @@ function fa_match(text, delta, m)
   for i = 1, n do
     q = delta[q][text[i]]
     if q == m then
-      return i - m
+      print(i - m)
     end
   end
   return -1
@@ -53,5 +53,5 @@ function fa_match_all(text, pattern, alphabet)
   return results
 end
 
-x = fa_match_all("αβαβγβαβαβαβαβγ", "αβ", "αβγδ")
+x = fa_match_all("XYXYYXYYYXYYYYXYXYXYXZYXZ", "YY", "XYWZ")
 for k, v in pairs(x) do print(v) end

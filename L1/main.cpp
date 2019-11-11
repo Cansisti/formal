@@ -12,6 +12,10 @@ class Matcher {
 			pattern(pattern)
 		{}
 		virtual int find_next() = 0;
+
+		int q = 0;
+		int i = 0;
+
 	protected:
 		const string text;
 		const string pattern;
@@ -27,24 +31,23 @@ class FiniteAutomataMatcher: public Matcher {
 		{
 			for(int q = 0; q <= m; q++) {
 				for(char a: alphabet) {
-					int k = min(m + 1, q + 2);
-					do k--; while(!ends_with(pattern.substr(0, q) + a, pattern.substr(0, k)));
+					int k = min(m, q + 1);
+					while(!ends_with(pattern.substr(0, q) + a, pattern.substr(0, k))) k--;
 					delta[q][a] = k;
+					cout << q << " " << a << " " << k << endl;
 				}
 			}
 		}
-
-		int q = 0;
-		int i = 0;
 
 		virtual int find_next() override {
 			for(; i < n; i++) {
 				q = delta[q][text.at(i)];
 				if(q == m) {
+					i++;
 					return i - m + 1;
 				}
 			}
-			return -1;
+			return -10;
 		}
 	private:
 		const string alphabet;
@@ -72,11 +75,9 @@ class KMPMatcher: public Matcher {
 				while(k > 0 and pattern.at(k) != pattern.at(q-1)) k = pi[k];
 				if(pattern.at(k) == pattern.at(q-1)) k++;
 				pi[q] = k;
+				cout << q << " " << k << endl;
 			}
 		}
-
-		int q = 0;
-		int i = 0;
 
 		virtual int find_next() override {
 			for(; i < n; i++) {
@@ -84,10 +85,11 @@ class KMPMatcher: public Matcher {
 				if(pattern.at(q) == text.at(i)) q++;
 				if(q == m) {
 					q = pi[q];
+					i++;
 					return i - m + 1;
 				}
 			}
-			return -1;
+			return -10;
 		}
 
 	private:
@@ -122,8 +124,8 @@ int main(int argc, char ** argv) {
 		return 1;
 	}
 
-	for(int p = matcher->find_next(); p != -1; p = matcher->find_next()) {
-		cout << p << " ";
+	for(int p = matcher->find_next(); p != -10; p = matcher->find_next()) {
+		cout << p << "     " << matcher->q << " " << matcher->i << endl;
 	}
 	cout << endl;
 

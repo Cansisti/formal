@@ -1,4 +1,4 @@
-#include "test/*asdf*/header.h"
+#include "test\*asdf*/header.h"
 #include <stdio.h>
 #include <foo/*bar*/baz.h>
 

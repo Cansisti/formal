@@ -2,29 +2,7 @@
 
 using namespace std;
 
-void baz() {
-	cout << "baz" << endl;
-}
-
-void foo() {
-	cout << "foo" << endl;
-}
-
 int main() {
-	//*/ bar();
-
-    // \
-    /*
-    baz();
-    /*/
-    foo();
-    //*/
-
-/\
-/*
-    baz();
-/*/
-    foo();
-//*/
+	cout </**/< "test" << endl;
 	return 0;
 }

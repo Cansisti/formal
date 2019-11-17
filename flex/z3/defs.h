@@ -7,6 +7,7 @@ enum State {
 	inside_string,
 	doxy_line,
 	doxy_block,
+	immune
 };
 
 enum Detection {
@@ -21,5 +22,6 @@ enum Detection {
 	doxy_line_begin,
 	doxy_block_begin,
 
-	quote
+	quote,
+	immunity
 };

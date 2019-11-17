@@ -44,6 +44,10 @@ int main(int argc, char** argv) {
 						state = inside_string;
 						break;
 					}
+					case immunity: {
+						state = immune;
+						break;
+					}
 				}
 				break;
 			}
@@ -63,6 +67,7 @@ int main(int argc, char** argv) {
 			case line_comment: {
 				switch(detection) {
 					case br: {
+						cout << " \n";
 						state = normal;
 						continue;
 					}
@@ -93,6 +98,15 @@ int main(int argc, char** argv) {
 			case doxy_block: {
 				switch(detection) {
 					case block_comment_end: {
+						state = normal;
+						break;
+					}
+				}
+				break;
+			}
+			case immune: {
+				switch(detection) {
+					case br: {
 						state = normal;
 						break;
 					}

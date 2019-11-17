@@ -8,6 +8,8 @@ hacks (\\[:blank:]*\n)?
 
 \" return quote;
 
+#include return immunity;
+
 \/{hacks}\*{hacks}\* return doxy_block_begin;
 \/{hacks}\*{hacks}! return doxy_block_begin;
 \/{hacks}\/{hacks}\/ return doxy_line_begin;

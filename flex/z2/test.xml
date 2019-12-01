@@ -9,3 +9,5 @@
   <!-- valid comment -->
   <!-- invalid -- comment -->
 </root>
+
+="<!-- valid comment -->"

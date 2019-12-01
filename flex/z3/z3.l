@@ -2,7 +2,7 @@
 #include "defs.h"
 %}
 
-hacks (\\[:blank:]*\n)?
+hacks (\\[:blank:]*\n)*
 
 %%
 

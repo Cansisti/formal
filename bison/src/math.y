@@ -73,8 +73,7 @@ e: BR_O s BR_C {
 	$$ = $1;
 	calc.evaluate({number, $1});
 }| MIN e {
-	// $$ = "-" + $2;
-	$$ = "-1 " + $2 + " *";
+	$$ = $2 + " ~";
 	calc.evaluate({onegate, $1});
 };
 

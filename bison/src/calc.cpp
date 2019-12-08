@@ -2,6 +2,8 @@
 
 #define STRANGE_MODULO
 
+#define abs(x) (x) < 0 ? -(x) : (x)
+
 void Calc::evaluate(Symbol symbol) {
 	switch(symbol.detection) {
 		case number: {
@@ -25,8 +27,12 @@ void Calc::evaluate(Symbol symbol) {
 		}
 		case odiv: {
 			auto args = pop<2>();
+			int r = args[1] / args[0];
+			if(r < 0) {
+				r -= abs(args[1] % args[0]);
+			}
 			if(args[0] == 0) throw runtime_error("Error: division by 0");
-			data.push(args[1] / args[0]);
+			data.push(r);
 			break;
 		}
 		case opow: {
